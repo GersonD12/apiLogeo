@@ -1,13 +1,13 @@
 const { Router } = require('express');
+const jwt = require('jsonwebtoken');
 const router = Router();
 
 // facturas
-const datos_transaccionesController = require('../controllers/impuestos/transaccionesController');
+const logicalogin = require('../controllers/datos_transaccionController');
 
 //RUTAS
-
 module.exports = (app) => {
     //Transacciones
-    router.post('/datostransccion/create', datos_transaccionesController.create);
+    router.get('/clientes/find', logicalogin.find);
     app.use('/', router);
 };
