@@ -33,10 +33,16 @@ module.exports = {
                 cod_postal: operaciones.cod_postal,
                 num_pedidos: operaciones.num_pedidos,
                 id_tipo_cliente: operaciones.id_tipo_cliente,
-                contra: bcrypt.hashSync(operaciones.contra,salt)
+                contra: bcrypt.hashSync(operaciones.contra,salt),
+                nom_usuario: operaciones.nom_usuario
             }
-                await datosgenerales.create(objetocliente);
-                res.send("Usuario registrado con mucho exito");
+                try{
+                    await datosgenerales.create(objetocliente);
+                    res.send("Usuario registrado con mucho exito");
+                } catch(error){
+                    res.send('Usuario ya existente')
+                    console.log(error)
+                }                
             } catch (error) {
                 console.log(error);
         } 
@@ -44,12 +50,12 @@ module.exports = {
 
     async login (req, res) {
         // Aquí se verificarían las credenciales del usuario (username y password)
-        const username = req.body.nombre;
+        const username = req.body.nom_usuario;
         const password = req.body.contra;
 
         const objeto = await datosgenerales.findOne({
             where: {
-                nombre:username
+                nom_usuario: username
             }
         });
         if(objeto){

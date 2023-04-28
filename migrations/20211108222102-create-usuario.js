@@ -28,6 +28,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      nom_usuario: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

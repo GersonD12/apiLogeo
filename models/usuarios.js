@@ -38,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     id_tipo_cliente:{
       type: DataTypes.INTEGER,
       allowNull: false 
+    },
+    nom_usuario: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false
     }
   }, {
     sequelize,
