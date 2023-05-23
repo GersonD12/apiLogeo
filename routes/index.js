@@ -29,7 +29,7 @@ module.exports = (app) => {
     //Transacciones
     router.get('/clientes/find', authenticateToken,logicalogin.find);
     router.post('/clientes/create', logicalogin.create);
-    router.get('/clientes/login', logicalogin.login);
+    router.post('/clientes/login', logicalogin.login);
     app.use('/', router);
 };
 

@@ -50,12 +50,13 @@ module.exports = {
 
     async login (req, res) {
         // Aquí se verificarían las credenciales del usuario (username y password)
-        const username = req.body.nom_usuario;
-        const password = req.body.contra;
 
+        const username = req.body.user;
+        const password = req.body.password;
+        
         const objeto = await datosgenerales.findOne({
             where: {
-                nom_usuario: username
+                nombre: username
             }
         });
         if(objeto){
@@ -63,6 +64,7 @@ module.exports = {
             if(match){
                 const token = jwt.sign({ username }, secretKey, { expiresIn: 600 });
                 res.send("Bienvenido");
+                console.log(token)
                 fs.writeFileSync('archivo.txt',token);
                 
             }else{
